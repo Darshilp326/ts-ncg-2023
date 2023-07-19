@@ -1,0 +1,22 @@
+.cards-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.form-container{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.form-container label{
+  margin-bottom:20px;
+}
+
+.form-container input{
+  padding:5px;
+  margin:5px
+}
