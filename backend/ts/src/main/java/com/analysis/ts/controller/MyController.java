@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.analysis.ts.entity.View;
 import com.analysis.ts.services.MyService;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin
 @RestController
 public class MyController {
 	
@@ -50,9 +51,11 @@ public class MyController {
 		return this.service.addView(view);
 	}
 	
-	@DeleteMapping("/view/{viewId}")
-	public View deleteView(@PathVariable String viewId) {
-		return this.service.deleteView(Long.parseLong(viewId));
+	@DeleteMapping("/views/{viewId}")
+	public ResponseEntity<?> deleteView(@PathVariable String viewId) {
+		this.service.deleteView(Long.parseLong(viewId));
+		return ResponseEntity.status(200).body("Successfully deleted");
+
 	}
 	
 }
